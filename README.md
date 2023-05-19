@@ -15,11 +15,17 @@ Para continuar, você precisa:
 ```
 
 ## Instalação
-| `pnpm install´
-| configurar .env com base no .env.example
-| se preferir, pode também subir a instância do mongodb no docker-compose
+
+Antes de tudo, garanta que a versão mais recente o pnpm está instalada em sua máquina, após isso:
+
+> `$ cd /livechat` ou `dir \livechat`
+
+> `$ pnpm install`
+
+> por fim, configure .env com base no .env.example em cada uma das aplicações localizadas em `packages`
 
 ## Uso
+
 Para iniciar o cliente, use:
 
 `pnpm client dev`
