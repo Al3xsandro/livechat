@@ -23,7 +23,7 @@ export class AuthenticateUserUseCase {
       throw new BadRequest("CPF ou senha inválidos");
     }
 
-    const passwordMatch = compare(password, userExists.password);
+    const passwordMatch = await compare(password, userExists.password);
 
     if (!passwordMatch) {
       throw new BadRequest("CPF ou senha inválidos");
