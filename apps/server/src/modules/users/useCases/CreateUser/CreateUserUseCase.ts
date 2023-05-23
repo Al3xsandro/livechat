@@ -14,7 +14,7 @@ export class CreateUserUseCase {
       .exec();
 
     if (userAlreadyExists) {
-      throw new BadRequest("User already exists");
+      throw new BadRequest("Usuário já cadastrado");
     }
 
     const hashedPassword = await hash(password, 8);
