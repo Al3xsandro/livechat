@@ -27,6 +27,12 @@
       ],
       "@routes/*": [
         "./src/infra/routes/*"
+      ],
+      "@modules/*": [
+        "./src/modules/*"
+      ],
+      "@config/*": [
+        "./src/config/*"
       ]
     }
   },

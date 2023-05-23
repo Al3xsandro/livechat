@@ -7,8 +7,13 @@ export function errorHandling(
   res: Response,
   next: NextFunction
 ) {
-  return res.status(err.statusCode).json({
-    msg: err.message,
-    success: false,
+  if (err instanceof BadRequest) {
+    return res.status(err.statusCode).send(err.message);
+  }
+
+  console.error(err);
+
+  return res.status(500).json({
+    message: "Internal error",
   });
 }

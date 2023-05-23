@@ -1,4 +1,6 @@
 import "dotenv/config";
+import "express-async-errors";
+
 import express from "express";
 import http from "http";
 import { Server } from "socket.io";
@@ -20,7 +22,11 @@ const io = new Server(server, {
 });
 
 application.use(express.json());
-application.use(cors());
+application.use(
+  cors({
+    origin: "*",
+  })
+);
 
 application.use(routes);
 
