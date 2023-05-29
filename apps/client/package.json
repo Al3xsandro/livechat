@@ -12,13 +12,16 @@
   "dependencies": {
     "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",
+    "formik": "^2.2.9",
     "nprogress": "^0.2.0",
     "postcss": "^8.4.23",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.11.2",
-    "tailwindcss": "^3.3.2"
+    "socket.io-client": "^4.6.1",
+    "tailwindcss": "^3.3.2",
+    "yup": "^1.1.1"
   },
   "devDependencies": {
     "@types/nprogress": "^0.2.0",
