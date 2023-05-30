@@ -12,6 +12,8 @@ import { routes } from "./routes";
 import { errorHandling } from "./middlewares/handleErrors";
 createConnection();
 
+import socketHandler from "./socket.io/socket-handler";
+
 const application = express();
 const server = http.createServer(application);
 
@@ -27,6 +29,8 @@ application.use(
     origin: "*",
   })
 );
+
+socketHandler();
 
 application.use(routes);
 

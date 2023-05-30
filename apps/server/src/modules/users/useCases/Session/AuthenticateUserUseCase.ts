@@ -29,10 +29,14 @@ export class AuthenticateUserUseCase {
       throw new BadRequest("CPF ou senha inválidos");
     }
 
-    const token = sign({ id: userExists?._id }, auth.secret_token, {
-      subject: userExists.id,
-      expiresIn: auth.expires_in,
-    });
+    const token = sign(
+      { id: userExists?._id, cpf: userExists.cpf },
+      auth.secret_token,
+      {
+        subject: userExists.id,
+        expiresIn: auth.expires_in,
+      }
+    );
 
     return {
       id: userExists.id,
