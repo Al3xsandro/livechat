@@ -2,9 +2,10 @@ import jwt from "jsonwebtoken";
 import { io } from "@infra/app";
 
 import config from "@config/auth";
+import { IUser } from "./sessionStore";
 
 export default function socketHandler() {
-  const users: any[] = [];
+  const users: IUser[] = [];
 
   io.use((socket, next) => {
     const token = socket.handshake.auth.token;
@@ -19,13 +20,53 @@ export default function socketHandler() {
   });
 
   io.on("connection", (socket) => {
-    socket.broadcast.emit("user-connected", {
-      user_id: socket.id,
+    const { id, cpf } = socket.data.user;
+
+    users.forEach((user) => {
+      if (user.id === id) {
+        user.connected = true;
+      }
     });
 
-    console.log(socket.data);
+    socket.join(id);
 
-    users.push(socket.data);
+    const userAlreadyExists = users.find(
+      (user) => user.id == id && user.cpf == cpf
+    );
+
+    if (!userAlreadyExists) {
+      users.push({
+        id: id,
+        connected: true,
+        cpf,
+      });
+    }
+
+    socket.broadcast.emit("user-connected", {
+      id: id,
+      connected: true,
+      cpf,
+    });
+
     socket.emit("users", users);
+
+    socket.on("private-message", ({ content, from, to }) => {
+      const message = {
+        content,
+        from,
+        to,
+      };
+      socket.to(to).to(from).emit("private-message", message);
+    });
+
+    socket.on("disconnect", () => {
+      socket.broadcast.emit("user-disconnected", id);
+
+      users.forEach((user) => {
+        if (user.id === id) {
+          user.connected = false;
+        }
+      });
+    });
   });
 }
