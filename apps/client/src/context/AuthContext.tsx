@@ -51,6 +51,8 @@ export function AuthProvider({ children }: IAuthProvider) {
           setUser({
             id: data.id,
             cpf: data.cpf,
+            messages: [],
+            connected: true,
           });
 
           setLoading(false);
@@ -82,7 +84,12 @@ export function AuthProvider({ children }: IAuthProvider) {
         .get('/users/me')
         .then((response) => response.data)
         .then((data) => {
-          setUser({ id: data.id, cpf: data.cpf });
+          setUser({
+            id: data.id,
+            cpf: data.cpf,
+            connected: true,
+            messages: [],
+          });
         })
         .catch(() => {
           localStorage.removeItem('@chatapp:token');

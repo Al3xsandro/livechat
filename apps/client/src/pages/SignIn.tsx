@@ -152,7 +152,7 @@ export default function Auth() {
                   id="password"
                   name="password"
                   type={showPassword ? 'text' : 'password'}
-                  className="form-control m-0 block w-full rounded border border-solid border-gray-700 bg-white bg-clip-padding px-4 py-3 pl-10 text-sm font-normal text-gray-400 transition ease-in-out invalid:border-red-600 invalid:text-red-600 focus:border-blue-600 focus:text-gray-200 focus:outline-none"
+                  className="form-control m-0 block w-full rounded border border-solid border-gray-700 bg-white bg-clip-padding px-4 py-3 pl-10 text-sm font-normal text-gray-400 transition ease-in-out invalid:border-red-600 invalid:text-red-600 focus:border-blue-600 focus:text-gray-400 focus:outline-none"
                   placeholder="Senha"
                 />
                 {showPassword ? (

@@ -1,5 +1,7 @@
 export interface IMessage {
-  fromSelf: string;
+  from: string;
+  to: string;
+  fromSelf?: boolean;
   content: string;
 }
 
