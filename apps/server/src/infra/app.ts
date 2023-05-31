@@ -1,4 +1,6 @@
 import "dotenv/config";
+import "express-async-errors";
+
 import express from "express";
 import http from "http";
 import { Server } from "socket.io";
@@ -10,6 +12,8 @@ import { routes } from "./routes";
 import { errorHandling } from "./middlewares/handleErrors";
 createConnection();
 
+import socketHandler from "./socket.io/socket-handler";
+
 const application = express();
 const server = http.createServer(application);
 
@@ -20,7 +24,13 @@ const io = new Server(server, {
 });
 
 application.use(express.json());
-application.use(cors());
+application.use(
+  cors({
+    origin: "*",
+  })
+);
+
+socketHandler();
 
 application.use(routes);
 

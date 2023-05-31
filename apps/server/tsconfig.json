@@ -6,7 +6,8 @@
     "removeComments": true,
     "resolveJsonModule": true,
     "typeRoots": [
-      "./node_modules/@types"
+      "./src/@types",
+      "./node_modules/@types",
     ],
     "sourceMap": true,
     "outDir": "dist",
@@ -27,11 +28,17 @@
       ],
       "@routes/*": [
         "./src/infra/routes/*"
+      ],
+      "@modules/*": [
+        "./src/modules/*"
+      ],
+      "@config/*": [
+        "./src/config/*"
       ]
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
   ],
   "exclude": ["node_modules"],
 }
